@@ -1,8 +1,17 @@
 from rest_framework import viewsets
 from rest_framework import generics
+from django_filters import rest_framework as filters
 from .serializers import BlogSerializer, UserSerializer, CommentSerializer, CategorySerializer
 from rest_framework.permissions import AllowAny
 from .models import Blog, Comment, Category
+
+
+class FilterCategory(filters.FilterSet):
+    category = filters.CharFilter(field_name="category", lookup_expr='exact')
+
+    class Meta:
+        model = Blog
+        fields = ['category']
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -14,6 +23,7 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     permission_classes = (AllowAny,)
+    filter_class = FilterCategory
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

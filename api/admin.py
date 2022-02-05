@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, Comment, User
+from .models import Blog, Comment, User, Category
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
 
@@ -33,3 +33,4 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Comment)
 admin.site.register(Blog)
+admin.site.register(Category)
