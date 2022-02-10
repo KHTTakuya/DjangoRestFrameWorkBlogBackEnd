@@ -19,6 +19,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'category']
+        read_only_fields = fields
 
 
 class BlogSerializer(serializers.ModelSerializer):
